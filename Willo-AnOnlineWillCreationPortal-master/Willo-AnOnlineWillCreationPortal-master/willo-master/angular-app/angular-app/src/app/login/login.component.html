@@ -1,0 +1,32 @@
+<div id=logindiv class="d-flex justify-content-center">
+    <form class="container" id="loginform" (ngSubmit)="loginUser($event)">
+      <br>
+      <br>
+      <br>
+      <h1 id="header1">Willo</h1>
+      <img id="willoimage" src="assets/images/willo1.png" width="100" height="100" class="d-inline-block align-top" alt="">
+      <br>
+      <div class="form-group" style="text-align: center;">
+      <br>
+        <label id="usernamelabel" for="username">Username:</label>
+        &nbsp;&nbsp;
+        <div class="d-flex justify-content-center">
+          <input type="text" class="form-control" id="username" style="width: 500px;" placeholder="Enter username">
+        </div>
+      <br>
+      <br>
+        <label id="passwordlabel" for="password">Password:</label>
+        &nbsp;&nbsp;
+        <div class="d-flex justify-content-center">
+          <input type="password" class="form-control" id="password" style="width: 500px;" placeholder="Password">
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="form-group">
+        <button type="submit" id="submitbutton" class="btn btn-primary">Submit</button>
+        &nbsp;&nbsp;
+        <button type="button" id="fpwdbutton" class="btn btn-primary" (click)="forgotPwdFunction()">Forgot Password?</button>
+      </div>
+    </form>
+</div>

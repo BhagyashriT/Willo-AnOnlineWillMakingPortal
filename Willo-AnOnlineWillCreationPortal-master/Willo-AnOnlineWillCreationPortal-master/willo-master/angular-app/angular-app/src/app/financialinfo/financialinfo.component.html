@@ -1,0 +1,164 @@
+<head>
+<script src="https://unpkg.com/ag-grid-enterprise@20.2.0/dist/ag-grid-enterprise.min.js"></script></head>
+<div id="maindiv">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #5282EE">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#/dashboard" class="navbar-brand"><img src="assets/images/willo1.png" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;&nbsp;Willo
+                </a>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="#/dashboard" class="navbar-brand">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/useraccount" class="navbar-brand">User Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/financialinfo" class="navbar-brand">Financial Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/addadmin" class="navbar-brand">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/customerfb" class="navbar-brand">Customer Feedback</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/login" class="navbar-brand">Sign Out</a>
+            </li>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="first" class="col-lg-6">
+                <h4 style="color: #5282EE">Current Subscription Model:</h4>
+                <font size=3 style="font-weight:bold;">Subsrciption fee: </font>
+                ${{subscriptionPrice}}  <input type="text" [(ngModel)]="priceVal" id="subID" placeholder="New subscription fee" #subInput>
+
+                <button id="ConfirmUpdate" (click)="onClickingUpdate()" class="btn btn-primary">Update
+                </button>
+                <h6 *ngIf="displayPass" style="color:#5282EE">Updated!</h6>
+                <h6 *ngIf="displayFail" style="color:#5282EE">Please enter something to update!</h6>
+                <br>
+                <br>
+
+                <h4 style="color: #5282EE">Discount Table</h4>
+                    <ag-grid-angular 
+                    style="width: 100%; height:200px; color:#531840; font-size: 15px;"
+                    class="ag-theme-balham"
+                    [rowData]="rowDataDisc"
+                    [columnDefs]="columnDefsDisc"
+                    [pagination]="true"
+                    (gridReady)="onGridReadyDisc($event)"
+                    [rowSelection]="rowSelection"
+                    (selectionChanged)="onSelectionChangedDisc($event)"
+                    >
+                    </ag-grid-angular>
+                <br>
+                <button id="AddPromo" (click)="onClickingAddPromo()" class="btn btn-primary">Add Promo
+                </button>
+                    &nbsp;&nbsp;
+                    <font *ngIf=clickConditionFlag style="margin-left: 20%" size=3 style="font-weight:bold;">{{selectedPromo}}: </font>
+                    &nbsp;
+                    <label *ngIf=clickConditionFlag class="radio-inline">
+                        <input type="radio" name="optradio" value="Active" [(ngModel)]="activitySelected">Active
+                    </label>
+                    &nbsp;
+                    <label *ngIf=clickConditionFlag class="radio-inline">
+                        <input type="radio" name="optradio" value="Inactive" [(ngModel)]="activitySelected">Inactive
+                    </label>
+
+                    <button *ngIf=clickConditionFlag style="margin-left: 5%;"id="Confirm" (click)="onClickingConfirm()" class="btn btn-primary">Confirm</button>
+                    <button *ngIf=clickConditionFlag style="margin-left: 5%;"id="Cancel" (click)="onClickingCancel()" class="btn btn-primary">Cancel</button>
+                    <font *ngIf=updateFlagPass style="color:#5282EE">Promo Code Updated </font>
+                    <font *ngIf=updateFlagFail style="color:#5282EE">Error! </font>
+                
+                <br>
+
+                <table *ngIf=conditionFlag>
+                    <tr>
+                        <td class="tableTag">
+                            <font size=3 style="font-weight:bold;">Promo Code Name: </font>
+                        </td>
+                        <td>
+                            <input type="text" [(ngModel)]="promoCode" name="PromoCode" form="my_form" />
+                        </td>
+                        <td class="tableTag">
+                            <font size=3 style="font-weight:bold;">Discount Value: </font>
+                        </td>
+                        <td>
+                            <input type="text" name="DiscountValue" [(ngModel)]="discountVal" form="my_form" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tableTag">
+                            <font size=3 style="font-weight:bold;">Discount Type: </font>
+                        </td>
+                        <td>
+                            <select id="discType" [(ngModel)]="discountType">
+                                <option value="Percent">Percent</option>
+                                <option value="Whole">Whole</option>
+                            </select>
+                        </td>
+                        <td class="tableTag">
+                            <font size=3 style="font-weight:bold;">Activity: </font>
+                        </td>
+                        <td>
+                            <select id="activityType" [(ngModel)]="activityType">
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <button id="SubmitButton" (click)="onClickingSubmit()" *ngIf=conditionFlag class="btn btn-primary">Submit</button>
+                <button id="ResetButton" (click)="onClickingReset()" *ngIf=conditionFlag class="btn btn-primary">Reset</button>
+                <h6  *ngIf="displayPassDisc" style="color:#6050dc">Added!</h6>
+                <h6  *ngIf="displayFailDisc" style="color:#6050dc">Please enter values in all fields!</h6>
+                <h6  *ngIf="displayFailPrimDisc" style="color:#6050dc">Promo code already exists!</h6>
+            </div>
+            <div class="col-lg-6" id="third">
+                <h4 style="color: #5282EE">Defaulters List:  Click on any Email-ID to reply</h4>
+                    <ag-grid-angular 
+                    style="width: 100%; height:400px; color:#531840; font-size: 15px;"
+                    class="ag-theme-balham"
+                    [rowData]="rowData"
+                    [columnDefs]="columnDefs"
+                    [paginationAutoPageSize]="true"
+                    [pagination]="true"
+                    [rowSelection]="rowSelection"
+                    (gridReady)="onGridReady($event)"
+                    (selectionChanged)="onSelectionChanged($event)"
+                    >
+                    </ag-grid-angular>
+                    <div *ngIf=displayFlag layout="row" flex>
+                        <br>
+                         <textarea rows="4" cols="80" id="textAreaId">Hello! Seems like you are running a little late on your subscription fee! Please make a payment as soon as possible to continue enjoying our services! - Team Willo
+                         </textarea>
+                        <br>
+                        <button type="button" id="sendEmailBtn" class="btn btn-primary" (click)="sendEmailFunction()">Send
+                        </button>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                    <b *ngIf=displayText style="color:#5282EE">Email sent to the user!</b>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="page-footer font-small teal pt-4">
+
+        <!-- Footer Text -->
+        <div class="container-fluid text-center text-md-left">
+        </div>
+        <!-- Footer Text -->
+        <!-- Copyright -->
+        <div id="footer" class="footer-copyright text-center py-3"><font color="#FFFFFF">© 2019 Copyright: </font>
+          <a id="willosite" href="http://bit.ly/mywillo">John Barbieri</a>
+        </div>
+        <!-- Copyright -->
+
+      </footer>
+      <!-- Footer -->
+    <!-- Footer -->
+     </div>

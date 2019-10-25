@@ -1,0 +1,34 @@
+nav a {
+  color: #fff;
+  }
+nav a.hover {
+  color: #32673f;
+}
+#footer {
+  position:fixed;
+  bottom:0;
+  width:100%;
+  height:60px;   /* Height of the footer */
+  background:#5282EE;
+}
+#AddAdmin,#AdminConfirm,#AdminCancel,#SubmitButton,#ResetButton{
+  background-color: #39527D;
+  border-color: #39527D;
+  color:#FFFFFF;
+}
+#textId,#textpwdId{
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-color: #5282EE;
+}
+
+#inputAdminDiv{
+  text-align: center;
+}
+
+#willosite{
+  color: #FFFFFF;
+}
+

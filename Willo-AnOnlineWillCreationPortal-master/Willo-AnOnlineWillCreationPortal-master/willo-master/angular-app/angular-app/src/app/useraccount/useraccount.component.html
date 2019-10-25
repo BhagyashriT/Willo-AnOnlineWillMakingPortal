@@ -1,0 +1,154 @@
+<div id="maindiv">
+    <nav id="navigationid" class="navbar navbar-expand-lg navbar-light" style="background-color: #5282EE">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#/dashboard" class="navbar-brand"><img src="assets/images/willo1.png" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;&nbsp;Willo
+                </a>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="#/dashboard" class="navbar-brand">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/useraccount" class="navbar-brand">User Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/financialinfo" class="navbar-brand">Financial Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/addadmin" class="navbar-brand">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/customerfb" class="navbar-brand">Customer Feedback</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/login" class="navbar-brand">Sign Out</a>
+            </li>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="first" class="col-lg-6" style="text-align: center;">
+              <h4 style="color: #5282EE; display: inline-block;">Select a User</h4>
+              <br>
+              <div style="width:100%; height: 100%">
+                  <ag-grid-angular 
+                    style="width: 80%; height:400px; color:#531840; font-size: 15px; display: inline-block;"
+                    class="ag-theme-balham"
+                    [rowData]="rowData"
+                    [columnDefs]="columnDefs"
+                    [paginationAutoPageSize]="true"
+                    [pagination]="true"
+                    [rowSelection]="rowSelection"
+                    (gridReady)="onGridReady($event)"
+                    (selectionChanged)="onSelectionChanged($event)"
+                    >
+                  </ag-grid-angular>
+              </div>    
+            </div>
+            <div class="col-lg-6" id="second" *ngIf=conditionFlag >
+                <div class="row">
+                    <div class="col-lg-7" id="sub1second">
+                        <font size=5 color="#5282EE" style="padding-right: 300px;">Selected User</font>
+                        <br>
+                        <font size=4 color="#5282EE" style="padding-right: 300px;">{{ownerData.name}}</font>
+                        <br>                
+                        <font size=3 style="font-weight:bold;" color="#39527D">Email ID: </font>{{ownerData.email}}
+                        <br>
+                        <font size=3 style="font-weight:bold;" color="#39527D">Contact:</font>
+                        {{ownerData.contact}}
+                        <br>
+                        <font size=3 style="font-weight:bold;" color="#39527D">Street Address:</font>
+                        {{ownerData.street_address}} 
+                        <br>
+                        <font size=3 style="font-weight:bold;" color="#39527D">City:</font>
+                        {{ownerData.city}}
+                        <br>
+                        <font size=3 style="font-weight:bold;" color="#39527D">Country:</font>
+                        {{ownerData.state}}
+                        <br>
+                        <font size=3 style="font-weight:bold;" color="#39527D">Marital Status:</font>
+                        {{ownerData.marital_status}}
+                        <br>
+                        <br>
+                        <button (click)="onClickPDF()" id=pdfgenbutton class="btn btn-primary" style="color: #FFFFFF">Download Default Will</button>&nbsp;&nbsp;
+                        <button (click)="createCustomWill()" id=customGen class="btn btn-primary" style="color: #FFFFFF">Create Custom Will</button>&nbsp;&nbsp;
+                        <button (click)="viewFeedbackInfo()" id=feedbackInfo class="btn btn-primary" style="color: #FFFFFF">View Feedback Info</button>
+                    </div>
+                    <div class="col-lg-5" id="sub2second">
+                        <font size=5 color="#5282EE">Beneficiaries List</font>
+                        <br>
+                        <font size=3 color="#39527D" *ngFor="let item of beneficiaryData"><strong>Name:</strong>{{item.name}}<br><strong>Email:</strong>{{item.email}}<br><br></font>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7" id="sub3second">
+                        <br>
+                        <br>
+                        <font size=5 color="#5282EE">Witness List</font>
+                        <br>
+                        <font size=3 color="#39527D" *ngFor="let item of witnessData"><strong>Name:</strong>{{item.name}}<br><strong>Email:</strong>{{item.email}}<br><br></font>
+                    </div>
+                    <div class="col-lg-5" id="sub4second">
+                        <br>
+                        <br>
+                        <font size=5 color="#5282EE">Executor List</font>
+                        <br>
+                        <font size=3 color="#39527D" *ngFor="let item of executorData"><strong>Name:</strong>{{item.name}}<br><strong>Email:</strong>{{item.email}}<br><br></font>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7" id="sub5second" *ngIf="conditionFlagAsset">
+                        <br>
+                        <br>
+                        <font size=5 color="#5282EE">Asset List</font>
+                        <br>
+                        <font size=3 color="#39527D" *ngFor="let item of assetData">{{item.belongings_name}}<br></font>
+                    </div>
+                    <div class="col-lg-5" id="sub6second" *ngIf="conditionFlagBenAsset">
+                        <br>
+                        <br>
+                        <font size=5 color="#5282EE">Beneficiary Asset List</font>
+                        <br>
+                        <font size=3 color="#39527D" *ngFor="let item of benAssetData">{{item.name}} <strong>gets</strong> {{item.belongings_name}}<br></font>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7" id="sub7second" >
+                        <br>
+                        <br>
+                        <button (click)="changeWillStatus()" id=willStatusChange class="btn btn-primary" style="color: #FFFFFF">Mark Will Complete</button>
+                        <br>
+                        <b *ngIf=displayWillSuccess style="color:#5282EE">User Status Updated!</b>
+                        <b *ngIf=displayWillFailure style="color:#5282EE">User Status Could not be Updated!</b>
+                    </div>
+                    <div class="col-lg-5" id="sub8second" >
+                        <br>
+                        <br>
+                        <font size=5 color="#5282EE">Last Payment Info</font>
+                        <br>
+                        <font size=3 color="#39527D" *ngIf=conditionFlagPayment>Last Payment Date:{{paymentDetails[0].last_payment_dt}}<br> Due Date:{{paymentDetails[0].due_date}}<br>Amount:{{paymentDetails[0].amount}} $</font>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <!-- Footer -->
+    <footer class="page-footer font-small teal pt-4">
+
+        <!-- Footer Text -->
+        <div class="container-fluid text-center text-md-left">
+        </div>
+        <!-- Footer Text -->
+
+        <!-- Copyright -->
+        <div id="footer" class="footer-copyright text-center py-3"><font color="#FFFFFF">© 2019 Copyright: </font>
+          <a id="willosite" href="http://bit.ly/mywillo">John Barbieri</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+</div>

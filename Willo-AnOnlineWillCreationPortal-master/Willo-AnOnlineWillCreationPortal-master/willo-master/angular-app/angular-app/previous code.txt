@@ -1,0 +1,18 @@
+<div style="background-color: #8A33FF">
+<h3 style="color: #FFFFFF">Willo</h3>
+    <br>
+    <br>
+    <br>
+    <br>
+    Username:<input type="text" id="username" name="username"/>
+    <br>
+    <br>
+    Password:<input type="password" id="password" name="pswrd"/>
+    <br>
+    <br>
+    <input type="button" id="login" onclick="loginUser($event)" value="Login"/>
+    &nbsp;&nbsp;
+    <input type="button" value="Forgot Password?"/>
+</div>
+
+

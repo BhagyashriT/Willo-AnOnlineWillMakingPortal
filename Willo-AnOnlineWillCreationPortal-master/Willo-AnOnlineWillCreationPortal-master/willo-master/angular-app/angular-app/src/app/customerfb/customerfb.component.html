@@ -1,0 +1,141 @@
+<!-- Load icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div id="maindiv">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #5282EE">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#/dashboard" class="navbar-brand"><img src="assets/images/willo1.png" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;&nbsp;Willo
+                </a>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="#/dashboard" class="navbar-brand">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/useraccount" class="navbar-brand">User Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/financialinfo" class="navbar-brand">Financial Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/addadmin" class="navbar-brand">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/customerfb" class="navbar-brand">Customer Feedback</a>
+            </li>
+            <li class="nav-item">
+                   <a class="nav-link" href="#/login" class="navbar-brand">Sign Out</a>
+            </li>
+        </div>
+    </nav>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="first" class="col-lg-6">
+                <br>
+                <div class="d-flex justify-content-center">
+                    <h4 style="color: #5282EE">Users waiting for your response:</h4>
+                </div>
+                <div id="agGridDiv" class="d-flex justify-content-center">
+                  <ag-grid-angular 
+                    style="width: 85%; height:400px; color:#531840; font-size: 15px; "
+                    class="ag-theme-balham"
+                    [rowData]="rowData"
+                    [columnDefs]="columnDefs"
+                    [paginationAutoPageSize]="true"
+                    [pagination]="true"
+                    [getRowHeight]="getRowHeight"
+                    [rowSelection]="rowSelection"
+                    [rowDeselection]="rowDeselection"
+                    (gridReady)="onGridReady($event)"
+                    (selectionChanged)="onSelectionChanged($event)"
+                    >
+                  </ag-grid-angular>
+                </div>
+                <br>
+                <br>
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center">
+                        <font size=3 style="font-weight:bold;">Search user feedback by email ID:</font>
+                    </div>&nbsp;&nbsp;&nbsp;
+                    <input type="text" id="searchBox"placeholder="Search.." #textInput>
+                    <button type="submit" (click)="displaySearchResults()"><i class="fa fa-search"></i></button>
+                </div>
+                <br>
+                <br>
+                <div *ngIf=displaySearchRes class="d-flex justify-content-center">
+                    <ag-grid-angular 
+                        style="width: 85%; height:400px; color:#531840; font-size: 15px; "
+                        class="ag-theme-balham"
+                        [rowData]="rowDataResponded"
+                        [columnDefs]="columnDefs"
+                        [paginationAutoPageSize]="true"
+                        [pagination]="true"
+                        [getRowHeight]="getRowHeight"
+                        [rowSelection]="rowSelection"
+                        [rowDeselection]="rowDeselection"
+                        (gridReady)="onGridReadyRes($event)"
+                        (selectionChanged)="onSelectionChangedRes($event)"
+                        >
+                    </ag-grid-angular>
+                </div>
+                <br>
+                <br>
+            </div>
+            <div id="second" class="col-lg-6" *ngIf=displayRightBar>
+                <br>
+                <br>
+                <div>
+                    <div class="d-flex justify-content-left">
+                        <font size=3 style="font-weight:bold;">Replying to {{username}} whose feedback is:</font>
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-left">
+                        <textarea id="textAreaId2" rows="4" cols="80"  placeholder="No feedback from user!" readonly>{{feedback}}</textarea>
+                    </div>
+                    <br>
+                    <div>
+                        <button type="button" id="replyOption" class="btn btn-primary" (click)="displayReply()">Reply</button>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div *ngIf=displayFlag>
+                    <div>
+                        <font size=3 style="font-weight:bold;">Your current reply/Send new reply:</font>
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-left">
+                        <textarea id="textAreaId" rows="4" cols="80" placeholder="Type mail here">{{admin_feedback}}</textarea>
+                    </div>
+                    <br>
+                    <br>   
+                    <div *ngIf=displayFlag class="justify-content-left">
+                        <button type="button" id="sendEmailBtn" class="btn btn-primary" (click)="sendEmailFunction()">Send</button>
+                    </div>
+                </div>
+                <b *ngIf=displayText style="color:#6050dc">Email sent to the user!</b>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>  
+    <!-- Footer -->
+    <footer class="page-footer font-small teal pt-4">
+
+        <!-- Footer Text -->
+        <div class="container-fluid text-center text-md-left">
+        </div>
+        <!-- Footer Text -->
+
+        <!-- Copyright -->
+        <div id="footer" class="footer-copyright text-center py-3"><font color="#FFFFFF">© 2019 Copyright: </font>
+          <a id="willosite" href="http://bit.ly/mywillo">John Barbieri</a>
+        </div>
+        <!-- Copyright -->
+
+      </footer>
+      <!-- Footer -->
+    <!-- Footer -->
+</div>

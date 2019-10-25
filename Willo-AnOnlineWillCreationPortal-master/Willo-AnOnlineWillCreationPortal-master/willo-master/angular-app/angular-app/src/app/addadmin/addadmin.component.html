@@ -1,0 +1,119 @@
+<div id="maindiv">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #5282EE">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#/dashboard" class="navbar-brand"><img src="assets/images/willo1.png" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;&nbsp;Willo
+                </a>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="#/dashboard" class="navbar-brand">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/useraccount" class="navbar-brand">User Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/financialinfo" class="navbar-brand">Financial Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/addadmin" class="navbar-brand">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/customerfb" class="navbar-brand">Customer Feedback</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/login" class="navbar-brand">Sign Out</a>
+            </li>
+        </div>
+    </nav>
+    <br>
+    <br>
+  
+    <div class="container-fluid" style="width: 100%; height:100%;">
+            <div class="container-fluid d-flex justify-content-center">
+                <h4 style="color: #5282EE">List of Admins</h4>
+            </div>
+            <br>
+            <br>
+            <div id="first" class="container-fluid d-flex justify-content-center">
+                <ag-grid-angular 
+                    style="width: 80%; height:200px; color:#531840; font-size: 15px;"
+                    class="ag-theme-balham"
+                    [rowData]="rowDataDisc"
+                    [columnDefs]="columnDefsDisc"
+                    [pagination]="true"
+                    (gridReady)="onGridReadyDisc($event)"
+                    [rowSelection]="rowSelection"
+                    (selectionChanged)="onSelectionChanged($event)"
+                    >
+                </ag-grid-angular>
+            </div>
+            <div class="container-fluid d-flex justify-content-center">
+                    <button id="AddAdmin" (click)="onClickingAddAdmin()" class="btn btn-primary">Add Admin
+                    </button>
+            </div>
+            <br>
+            <br>
+            <div class="container-fluid d-flex justify-content-center">
+                    &nbsp;&nbsp;
+                    <font *ngIf=clickConditionFlag style="margin-left: 20%" size=3 style="font-weight:bold;">{{selectedAdmin}}: </font>
+                    &nbsp;
+                    <label *ngIf=clickConditionFlag class="radio-inline">
+                        <input type="radio" name="optradio" value="Active" [(ngModel)]="activitySelected">Active
+                    </label>
+                    &nbsp;
+                    <label *ngIf=clickConditionFlag class="radio-inline">
+                        <input type="radio" name="optradio" value="Inactive" [(ngModel)]="activitySelected">Inactive
+                    </label>
+                   <br>
+                    <button id="AdminConfirm" *ngIf=clickConditionFlag style="margin-left: 5%;" (click)="onClickingConfirm()" class="btn btn-primary">Confirm</button>
+                    <button id="AdminCancel" *ngIf=clickConditionFlag style="margin-left: 5%;" (click)="onClickingCancel()" class="btn btn-primary">Cancel</button>
+                    <font *ngIf=updateFlagPass style="color:#5282EE">Admin Status Updated!</font>
+                    <font *ngIf=updateFlagFail style="color:#5282EE">Error! </font>
+                    <font *ngIf=updateSuper style="color: #5282EE">Cannot disable the super user!</font>
+                <br>
+            </div>
+            <div class="container-fluid d-flex justify-content-center">
+
+                <table *ngIf=conditionFlag>
+                    <tr>
+                        <td class="tableTag">
+                            <font size=3 style="font-weight:bold;">New admin EmailID: </font>
+                        </td>
+                        <td>
+                            <input type="text" [(ngModel)]="adminName" name="adminName" form="my_form" />
+                        </td>
+                    </tr>
+                    <tr>  
+                        <td class="tableTag">
+                            <font size=3 style="font-weight:bold;">New admin Password: </font>
+                        </td>
+                        <td>
+                            <input type="text" name="adminPassword" [(ngModel)]="adminPassword" form="my_form" />
+                        </td>
+                    </tr>
+                   
+                </table>
+              <br>
+              <br>
+                <h6  *ngIf="displayPassDisc" style="color:#6050dc">Added!</h6>
+                <h6  *ngIf="displayFailDisc" style="color:#6050dc">Please enter values in all fields!</h6>
+                <h6  *ngIf="displayFailPrimDisc" style="color:#6050dc">Admin already exists!</h6>
+        </div>
+        <br>
+      
+        <div class="container-fluid d-flex justify-content-center">
+                <button id="SubmitButton" (click)="onClickingSubmit()" *ngIf=conditionFlag class="btn btn-primary">Submit</button>&nbsp;&nbsp;
+                <button id="ResetButton" (click)="onClickingReset()" *ngIf=conditionFlag class="btn btn-primary">Reset</button>
+              </div>
+        <br>
+        <br>
+        <br>
+        <!-- Footer -->
+        <footer class="page-footer font-small teal pt-4">
+            <!-- Copyright -->
+            <div id="footer" class="footer-copyright text-center py-3"><font color="#FFFFFF">Â© 2019 Copyright: </font>
+              <a id="willosite" href="http://bit.ly/mywillo">John Barbieri</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+</div>

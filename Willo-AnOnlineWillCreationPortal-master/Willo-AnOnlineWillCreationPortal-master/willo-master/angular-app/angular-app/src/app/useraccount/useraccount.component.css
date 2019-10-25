@@ -1,0 +1,69 @@
+#navigationid{
+  width:100%;
+}
+#willosite{
+  color: #FFFFFF;
+}
+nav a {
+  color: #FFFFFF;
+  }
+nav a.hover {
+  color: #F0F0F0;
+}
+table{
+border-collapse:collapse;
+border:2px solid #5282EE;
+}
+table td{
+border:2px solid #5282EE;
+}
+#footer {
+  position:fixed;
+  bottom:0;
+  width:100%;
+  height:60px;   /* Height of the footer */
+  background:#5282EE;
+}
+
+#tableid{
+	text-align: center;
+	table-layout: auto;
+	width:100%;
+}
+
+#wrapper {
+    overflow: hidden; /* add this to contain floated children */
+}
+#first {
+    float:left; /* add this */
+}
+#second {
+    float: left; /* add this */
+}
+
+#pdfgenbutton, #textSubmit, #customGen, #feedbackInfo{
+  background-color: #39527D;
+  border-color: #39527D;
+  color:#FFFFFF;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+
+#willStatusChange{
+  background-color: #708090;
+  border-color: #A9A9A9;
+  color:#FFFFFF;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+
+tr:hover{
+  background-color: #d3d3d3;
+}
+
+#quilled{
+  height: 375px;
+}
+

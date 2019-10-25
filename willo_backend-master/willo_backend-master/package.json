@@ -1,0 +1,27 @@
+{
+  "name": "node-restapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Adam",
+    "email": "jstutorials1@gmail.com",
+    "url": "https://www.js-tutorials.com/"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.7.8",
+    "body-parser": "^1.16.1",
+    "bootstrap": "^4.3.1",
+    "cors": "^2.8.5",
+    "express": "^4.14.1",
+    "gmail-send": "^1.2.14",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.13.0",
+    "nodemailer": "^5.1.1",
+    "smtp-server": "^3.5.0"
+  }
+}

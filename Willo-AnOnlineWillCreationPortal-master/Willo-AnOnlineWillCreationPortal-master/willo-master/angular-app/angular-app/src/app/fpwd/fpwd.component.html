@@ -1,0 +1,11 @@
+<div id=fpwddiv class="d-flex justify-content-center">
+	<h1 id="header1" style="color: #FFFFFF">Forgot Password?</h1>
+	<div id="fpwdinternaldiv">
+		<input type="text" #textInput placeholder="Enter email ID">
+		&nbsp;&nbsp;
+		<button id="submitbutton" (click)="sendPassword(textInput.value)" style="color: #FFFFFF">Submit</button>
+		<br>
+		<h5 style="color: #FFFFFF" *ngIf="displayResultTrue">Email sent!</h5>
+		<h5 style="color: #FFFFFF" *ngIf="displayResultFalse">Invalid Email ID!</h5>
+	</div>
+</div>
