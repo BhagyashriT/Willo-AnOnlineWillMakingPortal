@@ -1,7 +1,17 @@
 # Willo-An Online Will Making Portal
 Willo is an online will making portal with mobile as well as website capability. This is the admin control login as well as API development for the same.
 
+### Technologies Used:
+1. MySQL
+2. Express.js
+3. Angular.js
+4. Node.js
+5. Quill.js
+6. JSPdf
+7. Ag-Grid
+8. Bootstrap
 
+## Poster for Competition: 
 ![Poster](https://github.com/BhagyashriT/Willo-AnOnlineWillMakingPortal/blob/master/Willo_BackendTeam_Poster.jpg)
 
 ## HomePage
